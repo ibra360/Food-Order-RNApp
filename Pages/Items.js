@@ -7,23 +7,29 @@ import {
   FlatList,
   Image,
 } from 'react-native';
-import {Divider} from 'react-native-paper';
+
 import {Data} from '../SampleData';
 
-export default function Items() {
+export default function Items({navigation}) {
   const renderItem = ({item, index}) => {
-    console.log('data============', item.images);
+    // console.log('data============', item.images);
     // const color = item.id === selectedId ? 'orange' : 'silver';
     // console.log({selectedId});
     return (
       <View style={styles.Card}>
-        <TouchableOpacity style={styles.center}>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate('SingleItem', item);
+          }}
+          style={styles.center}>
           <Image style={styles.tinyLogo} source={item.images} />
           <Text style={styles.price}>${item.price}</Text>
 
           <Text style={styles.name}>{item.productName}</Text>
         </TouchableOpacity>
+
         <View style={styles.divider}></View>
+
         <TouchableOpacity style={styles.center}>
           <Text style={styles.price}>Add to cart</Text>
         </TouchableOpacity>
@@ -37,6 +43,7 @@ export default function Items() {
         justifyContent: 'center',
         alignContent: 'center',
         marginLeft: '3%',
+        // paddingTop: 10,
         // marginRight: 'auto',
       }}>
       <FlatList numColumns={2} data={Data.Products} renderItem={renderItem} />
@@ -60,7 +67,7 @@ const styles = StyleSheet.create({
     // alignItems: 'center',
   },
   tinyLogo: {
-    width: 50,
+    width: 55,
     height: 50,
     marginVertical: 10,
   },
@@ -69,7 +76,7 @@ const styles = StyleSheet.create({
     // marginVertical: 5,
   },
   divider: {
-    height: 1,
+    height: 0.5,
     backgroundColor: 'silver',
     width: '100%',
     marginVertical: 6,

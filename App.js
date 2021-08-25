@@ -12,6 +12,8 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {Provider as PaperProvider} from 'react-native-paper';
 
 import MenuList from './Pages/MenuList';
+import SingleItem from './Pages/SingleItem';
+
 import {
   SafeAreaView,
   ScrollView,
@@ -36,8 +38,11 @@ const App = () => {
   return (
     <NavigationContainer>
       <PaperProvider>
-        <Stack.Navigator initialRouteName="MenuList">
+        <Stack.Navigator
+          initialRouteName="MenuList"
+          screenOptions={{headerShown: false}}>
           <Stack.Screen name="MenuList" component={MenuList} />
+          <Stack.Screen name="SingleItem" component={SingleItem} />
         </Stack.Navigator>
       </PaperProvider>
     </NavigationContainer>

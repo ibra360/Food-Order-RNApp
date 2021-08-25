@@ -2,50 +2,28 @@ import React, {Children, useState} from 'react';
 import {StyleSheet, Text, View, FlatList, TouchableOpacity} from 'react-native';
 import {Data} from '../SampleData';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import Items from './Items'
+import Items from './Items';
+import Navbar from './Navbar';
 
-export default function MenuList() {
-  console.log(Data.Categories);
-  const CATEGORIES = [
-    {
-      id: '01',
-      title: 'Cookies',
-    },
-    {
-      id: '02',
-      title: 'Cakes',
-    },
-    {
-      id: '03',
-      title: 'Brownies',
-    },
-    {
-      id: '04',
-      title: 'Brownies',
-    },
-    {
-      id: '05',
-      title: 'Brownies',
-    },
-    {
-      id: '06',
-      title: 'Brownies',
-    },
-  ];
+export default function MenuList({navigation}) {
+  // console.log(Data.Categories);
 
-  const [selectedId, setSelectedId] = useState(null);
+  const [selectedId, setSelectedId] = useState('1');
 
   const renderItem = ({item, index}) => {
-    console.log(item.id);
+    // console.log(item.id);
     const color = item.id === selectedId ? 'orange' : 'silver';
     console.log({selectedId});
     return (
       <View>
-        <TouchableOpacity onPress={() => setSelectedId(item.id)}>
+        <TouchableOpacity
+          onPress={() => {
+            setSelectedId(item.id);
+          }}>
           <Text
             style={[
-                index !== 0 ? styles.flatText : styles.firstFlatText,
-                {color},
+              index !== 0 ? styles.flatText : styles.firstFlatText,
+              {color},
             ]}>
             {item.categoryName}
           </Text>
@@ -56,6 +34,7 @@ export default function MenuList() {
 
   return (
     <SafeAreaView>
+      <Navbar />
       <View style={styles.topView}>
         <Text style={styles.title}>Categories</Text>
         <FlatList
@@ -66,7 +45,7 @@ export default function MenuList() {
           extraData={selectedId}
         />
       </View>
-      <Items/>
+      <Items navigation={navigation} />
     </SafeAreaView>
   );
 }
@@ -74,7 +53,7 @@ export default function MenuList() {
 const styles = StyleSheet.create({
   topView: {
     backgroundColor: 'white',
-    marginBottom:15
+    marginBottom: 10,
   },
   title: {
     fontSize: 32,
@@ -84,8 +63,8 @@ const styles = StyleSheet.create({
   },
   flatText: {
     fontSize: 15,
-    marginHorizontal: 35,
-    paddingBottom: 10,
+    marginHorizontal: 30,
+    // paddingBottom: 1,
     color: 'silver',
     fontWeight: '700',
   },
@@ -93,7 +72,7 @@ const styles = StyleSheet.create({
   firstFlatText: {
     fontSize: 15,
     marginLeft: 18,
-    marginRight: 35,
+    marginRight: 30,
     color: 'silver',
     fontWeight: '700',
 

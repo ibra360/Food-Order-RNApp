@@ -2,13 +2,22 @@ import React from 'react';
 
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import {useNavigation} from '@react-navigation/native';
+import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 
-import {StyleSheet, Text, View} from 'react-native';
-
-export default function Navbar() {
+export default function Navbar(props) {
+  const navigation = useNavigation();
+  console.log(navigation.getCurrentRoute);
   return (
     <View style={styles.navContainer}>
-      <AntDesign style={styles.backIcon} size={30} name="arrowleft" />
+      <TouchableOpacity
+        onPress={() => {
+          navigation.goBack();
+        }}>
+        {navigation.getCurrentRoute.name !== 'Home' ?? (
+          <AntDesign style={styles.backIcon} size={30} name="arrowleft" />
+        )}
+      </TouchableOpacity>
       <Text style={styles.text}>Bunny Cookies</Text>
       <FontAwesome color="orange" name="opencart" size={20} />
     </View>

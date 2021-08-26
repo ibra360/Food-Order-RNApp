@@ -2,21 +2,18 @@ import React from 'react';
 import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import Navbar from './Navbar';
 
-export default function SingleItem(props) {
-  console.log(props.route.params);
-  const Item = props.route.params;
+export default function SingleItem({navigation}) {
   return (
     <View>
-      {/* <Navbar /> */}
-      <Text style={styles.pName}>{Item.productName} </Text>
       <View style={styles.center}>
-        <Image style={styles.image} source={Item.images} />
-        <Text style={styles.price}>${Item.price}</Text>
-
-        <Text style={styles.name}>{Item.productName}</Text>
-        <Text style={styles.desc}>{Item.description}</Text>
-        <TouchableOpacity style={styles.button}>
-          <Text style={{color: 'white'}}>Add to Cart</Text>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate('MenuList');
+          }}
+          style={styles.button}>
+          <Text style={{color: 'white', fontSize: 18}}>
+            Search for Bunny Cookies
+          </Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -49,8 +46,7 @@ const styles = StyleSheet.create({
   name: {
     fontSize: 20,
     marginBottom: 15,
-    fontFamily: 'sans-serif',
-
+    // fontFamily: 'sans-serif',
   },
   desc: {
     color: 'silver',

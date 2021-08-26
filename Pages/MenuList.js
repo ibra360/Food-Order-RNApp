@@ -34,7 +34,7 @@ export default function MenuList({navigation}) {
 
   return (
     <SafeAreaView>
-      <Navbar />
+      {/* <Navbar /> */}
       <View style={styles.topView}>
         <Text style={styles.title}>Categories</Text>
         <FlatList
@@ -45,7 +45,7 @@ export default function MenuList({navigation}) {
           extraData={selectedId}
         />
       </View>
-      <Items navigation={navigation} />
+      <Items navigation={navigation} selectedId={selectedId} />
     </SafeAreaView>
   );
 }

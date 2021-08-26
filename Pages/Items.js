@@ -10,29 +10,40 @@ import {
 
 import {Data} from '../SampleData';
 
-export default function Items({navigation}) {
+export default function Items({navigation, selectedId}) {
+  const fPrd = Data.Products.filter(item => item.CategoryId == selectedId);
+  console.log({fPrd});
+
   const renderItem = ({item, index}) => {
+    // console.log({fPrd});
+
+    // const ct = tab => {
+    // setCC(tab);
+    // setTabProducts(fPrd);
+    // };
     // console.log('data============', item.images);
     // const color = item.id === selectedId ? 'orange' : 'silver';
     // console.log({selectedId});
     return (
-      <View style={styles.Card}>
-        <TouchableOpacity
-          onPress={() => {
-            navigation.navigate('SingleItem', item);
-          }}
-          style={styles.center}>
-          <Image style={styles.tinyLogo} source={item.images} />
-          <Text style={styles.price}>${item.price}</Text>
+      <View style={{width: '50%'}}>
+        <View style={styles.Card}>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate('SingleItem', item);
+            }}
+            style={styles.center}>
+            <Image style={styles.tinyLogo} source={item.images} />
+            <Text style={styles.price}>${item.price}</Text>
 
-          <Text style={styles.name}>{item.productName}</Text>
-        </TouchableOpacity>
+            <Text style={styles.center}>{item.productName}</Text>
+          </TouchableOpacity>
 
-        <View style={styles.divider}></View>
+          <View style={styles.divider}></View>
 
-        <TouchableOpacity style={styles.center}>
-          <Text style={styles.price}>Add to cart</Text>
-        </TouchableOpacity>
+          <TouchableOpacity style={styles.center}>
+            <Text style={styles.price}>Add to cart</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     );
   };
@@ -40,28 +51,34 @@ export default function Items({navigation}) {
   return (
     <View
       style={{
-        justifyContent: 'center',
-        alignContent: 'center',
-        marginLeft: '3%',
+        // justifyContent: 'center',
+        // alignContent: 'center',
+        // flexDirection: 'row',
+        // alignItems:"center",
+        // justifyContent: 'space-between',
+        paddingHorizontal: 10,
+        // marginLeft: '3%',
         // paddingTop: 10,
         // marginRight: 'auto',
       }}>
-      <FlatList numColumns={2} data={Data.Products} renderItem={renderItem} />
+      <FlatList numColumns={2} data={fPrd} renderItem={renderItem} />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  items: {},
+  d: {},
   center: {
     alignItems: 'center',
+    textAlign: 'center',
   },
   Card: {
     justifyContent: 'center',
     // alignContent: 'center',
+    // borderWidth: 1,
     padding: 10,
     backgroundColor: 'white',
-    width: '44%',
+    // width: '44%',
     margin: 8,
     borderRadius: 12,
     // alignItems: 'center',

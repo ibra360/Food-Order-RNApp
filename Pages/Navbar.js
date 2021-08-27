@@ -4,17 +4,19 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import {useNavigation} from '@react-navigation/native';
 import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import {useRoute} from '@react-navigation/native';
 
 export default function Navbar(props) {
   const navigation = useNavigation();
-  console.log(navigation.getCurrentRoute);
+  // const route = useRoute();
+  console.log('sss', navigation);
   return (
     <View style={styles.navContainer}>
       <TouchableOpacity
         onPress={() => {
           navigation.goBack();
         }}>
-        {navigation.getCurrentRoute.name !== 'Home' ?? (
+        {navigation.getCurrentRoute.name == 'Home' ?? (
           <AntDesign style={styles.backIcon} size={30} name="arrowleft" />
         )}
       </TouchableOpacity>

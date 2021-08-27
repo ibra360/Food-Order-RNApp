@@ -12,18 +12,10 @@ import {Data} from '../SampleData';
 
 export default function Items({navigation, selectedId}) {
   const fPrd = Data.Products.filter(item => item.CategoryId == selectedId);
-  console.log({fPrd});
+  // console.log({fPrd});
 
   const renderItem = ({item, index}) => {
-    // console.log({fPrd});
-
-    // const ct = tab => {
-    // setCC(tab);
-    // setTabProducts(fPrd);
-    // };
-    // console.log('data============', item.images);
-    // const color = item.id === selectedId ? 'orange' : 'silver';
-    // console.log({selectedId});
+   
     return (
       <View style={{width: '50%'}}>
         <View style={styles.Card}>

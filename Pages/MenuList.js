@@ -6,7 +6,7 @@ import Items from './Items';
 import Navbar from './Navbar';
 
 export default function MenuList({navigation}) {
-  // console.log(Data.Categories);
+  console.log(navigation);
 
   const [selectedId, setSelectedId] = useState('1');
 
